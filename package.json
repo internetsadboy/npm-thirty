@@ -1,0 +1,26 @@
+{
+  "name": "npm-bot",
+  "version": "0.0.1",
+  "description": "web app that is centered around npm pkg usage (downloads) ",
+  "main": "app.js",
+  "scripts": {
+    "test": "node test/*.js",
+    "start": "node app.js"
+  },
+  "keywords": [
+    "npm",
+    "pkg",
+    "usage",
+    "downloads",
+    "web",
+    "app"
+  ],
+  "author": "ghostsnstuff <@gns>",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.6.5",
+    "express": "^4.8.5",
+    "method-override": "^2.1.3",
+    "npm-pkg-downloads": "0.0.1"
+  }
+}
