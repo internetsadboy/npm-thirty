@@ -56,7 +56,5 @@ Removes a poll
 `GET /poll/:from/:to`
 
 Return a range of npm pkg download data
-
-Where `from` refers to the starting date
-
-And `to` refers to the ending date
+* `from` refers to the starting date
+* `to` refers to the ending date
