@@ -58,4 +58,3 @@ Removes a poll
 Return a range of npm pkg download data
 Where `from` refers to the starting date
 And `to` refers to the ending date
-

@@ -7,13 +7,13 @@ var npmDownloads = require('npm-pkg-downloads'),
 
 
 router.get('/', function(req, res, next) {
-  npmDownloads(function(downloads) {
+  npmDownloads(function (downloads) {
     res.json(downloads);
   });
 });
 
 
-router.get('/:save', function(req, res, next) {
+router.post('/', function(req, res, next) {
   var entry = {},
       timestamp,
       uid;
@@ -21,7 +21,7 @@ router.get('/:save', function(req, res, next) {
   uid = crypto.randomBytes(12).toString('hex');
   timestamp = new Date().getTime();
 
-  npmDownloads(function(downloads) {
+  npmDownloads(function (downloads) {
 
     entry.uid = uid;
     entry.timestamp = timestamp;
