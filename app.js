@@ -16,6 +16,6 @@ app.use('/poll', routes.poll);
 
 port = process.env.PORT || 8000;
 
-app.listen(port, function() {
+app.listen(port, function () {
   console.log('listening on port', port);
 });

@@ -6,14 +6,14 @@ var npmDownloads = require('npm-pkg-downloads'),
     fs = require('fs');
 
 
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
   npmDownloads(function (downloads) {
     res.json(downloads);
   });
 });
 
 
-router.post('/', function(req, res, next) {
+router.post('/', function (req, res, next) {
   var entry = {},
       timestamp,
       uid;
@@ -27,8 +27,8 @@ router.post('/', function(req, res, next) {
     entry.timestamp = timestamp;
     entry.downloads = downloads;
 
-    fs.writeFile('./db/entry_' + timestamp, JSON.stringify(entry), function(err) {
-      if(err) {
+    fs.writeFile('./db/entry_' + timestamp, JSON.stringify(entry), function (err) {
+      if (err) {
         console.log(err);
       }
     });
