@@ -2,6 +2,7 @@
 
 var npmDownloads = require('npm-pkg-downloads'),
     router = require('express').Router(),
+    models = require('../../models/index'),
     crypto = require('crypto'),
     fs = require('fs');
 
@@ -14,28 +15,54 @@ router.get('/', function (req, res, next) {
 
 
 router.post('/', function (req, res, next) {
-  var entry = {},
-      timestamp,
-      uid;
+  var timestamp, day, month, year, date;
 
-  uid = crypto.randomBytes(12).toString('hex');
-  timestamp = new Date().getTime();
+  timestamp = new Date();
+
+  // format date
+  day = timestamp.getDate();
+  month = timestamp.getMonth() + 1; // index starts at 0
+  year = timestamp.getFullYear();
+
+  if (month < 10) {
+    month = '0' + month;
+  }
+
+  if (day < 10) {
+    day = '0' + day;
+  }
+
+  date = year + '-' + month + '-' + day;
 
   npmDownloads(function (downloads) {
+    var entry, _downloads = [];
 
-    entry.uid = uid;
-    entry.timestamp = timestamp;
-    entry.downloads = downloads;
+    // add timestamp
+    downloads['timestamp'] = timestamp;
 
-    fs.writeFile('./db/entry_' + timestamp, JSON.stringify(entry), function (err) {
-      if (err) {
-        console.log(err);
-      }
-    });
+    _downloads[0] = downloads;
+
+    entry = { date : date, downloads : _downloads };
+
+    new models.pkgDownloads(entry).save();
 
     res.json(entry);
   });
 });
 
+
+
+router.route('/:date')
+  .get(function (req, res, next) {
+    models.pkgDownloads
+      .find({})
+      .exec(function (err, documents) {
+        if (err) {
+          console.log(err);
+        }
+
+        console.log(documents[0]['downloads']);
+      })
+  })
 
 module.exports = router;

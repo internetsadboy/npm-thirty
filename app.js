@@ -3,12 +3,15 @@
 var methodOverride = require('method-override'),
     bodyParser = require('body-parser'),
     routes = require('./routes/index'),
+    mongoose = require('mongoose'),
     express = require('express');
 
 
 var app, port;
 
 app = express();
+
+mongoose.connect('mongodb://localhost');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
