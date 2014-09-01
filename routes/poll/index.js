@@ -35,14 +35,9 @@ router.post('/', function (req, res, next) {
   date = year + '-' + month + '-' + day;
 
   npmDownloads(function (downloads) {
-    var entry, _downloads = [];
+    var entry;
 
-    // add timestamp
-    downloads['timestamp'] = timestamp;
-
-    _downloads[0] = downloads;
-
-    entry = { date : date, downloads : _downloads };
+    entry = { date : date, downloads : downloads };
 
     new models.pkgDownloads(entry).save();
 

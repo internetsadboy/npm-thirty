@@ -11,6 +11,7 @@ ObjectId = Schema.ObjectId;
 pkgDownloadsSchema = new Schema({
   uid: ObjectId,
   date: String,
+  timestamp: { type: Date, default: Date.now },
   downloads: Object
 });
 
