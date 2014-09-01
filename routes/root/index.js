@@ -1,7 +1,7 @@
 'use strict';
 
 var router = require('express').Router();
-s
+
 
 router.get('/', function (req, res, next) {
   var docs;
@@ -11,7 +11,7 @@ router.get('/', function (req, res, next) {
          'PUT    /poll/:date\n' +
          'DELETE /poll/:date\n';
 
-  res.send(docs);
+  res.end(docs);
 });
 
 
