@@ -51,18 +51,57 @@ router.post('/', function (req, res, next) {
 });
 
 
-
 router.route('/:date')
+
   .get(function (req, res, next) {
+    var date = req.params.date;
+
+    if (req.query.id) {
+      // todo: fetch by id
+    }
+
     models.pkgDownloads
-      .find({})
-      .exec(function (err, documents) {
+      .find({ 'date' : date })
+      .exec(function (err, doc) {
+
         if (err) {
           console.log(err);
         }
 
-        console.log(documents[0]['downloads']);
-      })
+        res.json(doc);
+      });
   })
+
+  .put(function (req, res, next) {
+    var date;
+
+    date = req.params.date;
+
+    models.pkgDownloads
+      .update({ 'date' : date })
+      .exec(function (err, doc) {
+
+        if (err) {
+          console.log(err);
+        }
+
+        res.send(doc);
+      });
+  })
+
+  .delete(function (req, res, next) {
+    var date = req.params.date;
+
+    models.pkgDownloads
+      .remove({ 'date' : date }, function (err) {
+
+        if (err) {
+          console.log(err);
+        }
+
+        res.send('');
+      });
+  });
+
 
 module.exports = router;

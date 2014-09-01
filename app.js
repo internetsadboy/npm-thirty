@@ -11,7 +11,7 @@ var app, port;
 
 app = express();
 
-mongoose.connect('mongodb://localhost');
+mongoose.connect('mongodb://localhost/npmThirty');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
