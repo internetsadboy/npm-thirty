@@ -13,8 +13,12 @@ app = express();
 
 mongoose.connect('mongodb://localhost/npmThirty');
 
+// middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// routes
+app.use('/', routes.root);
 app.use('/poll', routes.poll);
 
 port = process.env.PORT || 8000;
